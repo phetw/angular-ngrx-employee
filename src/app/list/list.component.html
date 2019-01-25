@@ -1,0 +1,9 @@
+<div *ngIf="(loading$ | async); else loaded"><p>LOADING ...</p></div>
+<ng-template #loaded>
+  <ul>
+    <li *ngFor="let employee of (employees$ | async)">
+      {{ employee.firstname }} {{ employee.lastname }} {{ employee.age }}
+    </li>
+  </ul>
+</ng-template>
+<div *ngIf="(error$ | async)"><p>Error ...</p></div>
