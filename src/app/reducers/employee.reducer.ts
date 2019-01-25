@@ -1,11 +1,5 @@
-import { Action } from "@ngrx/store"
-import { ActionTypes } from "../actions/employee.action"
+import { ActionTypes, EmployeeActions } from "../actions/employee.action"
 import { Employee } from "../models/employee.model"
-
-interface IAction extends Action {
-  type: string
-  payload?: any
-}
 
 export interface IEmployeeState {
   loading: boolean
@@ -21,7 +15,7 @@ export const initialState = {
 
 export function employeeReducer(
   state: IEmployeeState = initialState,
-  action: IAction
+  action: EmployeeActions
 ) {
   switch (action.type) {
     case ActionTypes.LOAD_REQUEST:

@@ -19,3 +19,8 @@ export class LoadEmployeeFailed implements Action {
   readonly type = ActionTypes.LOAD_FAILED
   constructor(public payload: { loading: boolean; error: any }) {}
 }
+
+export type EmployeeActions =
+  | LoadEmployee
+  | LoadEmployeeSuccess
+  | LoadEmployeeFailed
