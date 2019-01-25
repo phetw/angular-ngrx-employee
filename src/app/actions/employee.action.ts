@@ -12,12 +12,12 @@ export class LoadEmployee implements Action {
 
 export class LoadEmployeeSuccess implements Action {
   readonly type = ActionTypes.LOAD_SUCCESS
-  constructor(public payload: { data: []; loading: boolean }) {}
+  constructor(public payload: { data: [] }) {}
 }
 
 export class LoadEmployeeFailed implements Action {
   readonly type = ActionTypes.LOAD_FAILED
-  constructor(public payload: { loading: boolean; error: any }) {}
+  constructor(public payload: { error: any }) {}
 }
 
 export type EmployeeActions =
