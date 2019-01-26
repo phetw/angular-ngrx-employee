@@ -18,7 +18,9 @@ export class EmployeeEffects {
           type: ActionTypes.LOAD_SUCCESS,
           payload: employees,
         })),
-        catchError(err => of({ type: ActionTypes.LOAD_FAILED, payload: err }))
+        catchError(err =>
+          of({ type: ActionTypes.LOAD_FAILED, payload: err.message })
+        )
       )
     )
   )

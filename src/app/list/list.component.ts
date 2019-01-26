@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core"
 import { Observable } from "rxjs"
-import { Employee } from "../models/employee.model"
-import { Store } from "@ngrx/store"
-import { ActionTypes } from "../actions/employee.action"
-import { IEmployeeState } from "../reducers/employee.reducer"
+import { Store, select } from "@ngrx/store"
+
+import { IAppState } from "../state/app.state"
+import { IEmployee } from "../models/employee.model"
+import { LoadEmployee } from "../actions/employee.action"
+import * as employeeSelector from "../selectors/employee.selector"
 
 @Component({
   selector: "emp-list",
@@ -11,19 +13,23 @@ import { IEmployeeState } from "../reducers/employee.reducer"
   styleUrls: ["./list.component.scss"],
 })
 export class ListComponent implements OnInit {
-  loading$: Observable<boolean> = this.store.select(
-    state => state.employee.loading
+  loading$: Observable<boolean> = this.store.pipe(
+    select(employeeSelector.loading)
   )
-  employees$: Observable<Employee[]> = this.store.select(
-    state => state.employee.data
+  employees$: Observable<IEmployee[]> = this.store.pipe(
+    select(employeeSelector.data)
   )
-  error$: Observable<Employee[]> = this.store.select(
-    state => state.employee.error
+  error$: Observable<IEmployee[]> = this.store.pipe(
+    select(employeeSelector.error)
   )
 
-  constructor(private store: Store<{ employee: IEmployeeState }>) {}
+  constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    this.store.dispatch({ type: ActionTypes.LOAD_REQUEST })
+    this.getEmployee()
+  }
+
+  getEmployee(): void {
+    this.store.dispatch(new LoadEmployee())
   }
 }

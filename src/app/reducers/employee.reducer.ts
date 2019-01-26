@@ -1,37 +1,25 @@
 import { ActionTypes, EmployeeActions } from "../actions/employee.action"
-import { Employee } from "../models/employee.model"
-
-export interface IEmployeeState {
-  loading: boolean
-  data: Employee[]
-  error?: any
-}
-
-export const initialState = {
-  loading: false,
-  data: [],
-  error: null,
-}
+import { initialEmployeeState, IEmployeeState } from "../state/employee.state"
 
 export function employeeReducer(
-  state: IEmployeeState = initialState,
+  state: IEmployeeState = initialEmployeeState,
   action: EmployeeActions
 ) {
   switch (action.type) {
     case ActionTypes.LOAD_REQUEST:
       return {
-        ...initialState,
+        ...state,
         loading: true,
       }
     case ActionTypes.LOAD_SUCCESS:
       return {
-        ...initialState,
+        ...state,
         data: action.payload,
         loading: false,
       }
     case ActionTypes.LOAD_FAILED:
       return {
-        ...initialState,
+        ...state,
         loading: false,
         error: action.payload,
       }

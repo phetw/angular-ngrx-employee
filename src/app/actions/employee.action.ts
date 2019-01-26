@@ -1,4 +1,5 @@
 import { Action } from "@ngrx/store"
+import { IEmployee } from "../models/employee.model"
 
 export enum ActionTypes {
   LOAD_REQUEST = "[Employee] Load Request",
@@ -12,12 +13,12 @@ export class LoadEmployee implements Action {
 
 export class LoadEmployeeSuccess implements Action {
   readonly type = ActionTypes.LOAD_SUCCESS
-  constructor(public payload: { data: [] }) {}
+  constructor(public payload: IEmployee[]) {}
 }
 
 export class LoadEmployeeFailed implements Action {
   readonly type = ActionTypes.LOAD_FAILED
-  constructor(public payload: { error: any }) {}
+  constructor(public payload: string) {}
 }
 
 export type EmployeeActions =

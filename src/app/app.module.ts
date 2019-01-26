@@ -9,8 +9,9 @@ import { AppRoutingModule } from "./app-routing.module"
 import { AppComponent } from "./app.component"
 import { ListComponent } from "./list/list.component"
 
-import { employeeReducer } from "./reducers/employee.reducer"
+import { appReducer } from "./reducers/app.reducer"
 import { EmployeeEffects } from "./effects/employee.effect"
+import { StoreRouterConnectingModule } from "@ngrx/router-store"
 
 @NgModule({
   declarations: [AppComponent, ListComponent, ListComponent],
@@ -18,8 +19,9 @@ import { EmployeeEffects } from "./effects/employee.effect"
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ employee: employeeReducer }),
+    StoreModule.forRoot(appReducer),
     EffectsModule.forRoot([EmployeeEffects]),
+    StoreRouterConnectingModule.forRoot({ stateKey: "router" }),
     StoreDevtoolsModule.instrument({
       maxAge: 30,
     }),

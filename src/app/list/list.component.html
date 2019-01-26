@@ -6,4 +6,6 @@
     </li>
   </ul>
 </ng-template>
-<div *ngIf="(error$ | async)"><p>Error ...</p></div>
+<div *ngIf="(error$ | async) as error">
+  <p>{{ error }} ...</p>
+</div>
