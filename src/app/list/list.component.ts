@@ -4,7 +4,7 @@ import { Store, select } from "@ngrx/store"
 
 import { IAppState } from "../state/app.state"
 import { IEmployee } from "../models/employee.model"
-import { LoadEmployee } from "../actions/employee.action"
+import * as employeeAction from "../actions/employee.action"
 import * as employeeSelector from "../selectors/employee.selector"
 
 @Component({
@@ -30,6 +30,6 @@ export class ListComponent implements OnInit {
   }
 
   getEmployee(): void {
-    this.store.dispatch(new LoadEmployee())
+    this.store.dispatch(new employeeAction.LoadEmployee())
   }
 }
