@@ -16,7 +16,7 @@ import { StoreRouterConnectingModule } from "@ngrx/router-store"
 @NgModule({
   declarations: [AppComponent, ListComponent, ListComponent],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
